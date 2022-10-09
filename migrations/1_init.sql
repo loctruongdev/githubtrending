@@ -1,16 +1,16 @@
 -- +migrate Up
 CREATE TABLE "users" (
-    "user_id" PRIMARY KEY,
+    "user_id" text PRIMARY KEY,
     "full_name" text,
-    "email" UNIQUE,
+    "email" text UNIQUE,
     "password" text, 
     "role" text,
     "created_at" TIMESTAMPTZ NOT NULL, 
-    "updated_ate" TIMESTAMPTZ NOT NULL
+    "updated_at" TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE "repos" (
-    "name" PRIMARY KEY,
+    "name" text PRIMARY KEY,
     "description" text,
     "url" text,
     "color" text,
@@ -24,18 +24,20 @@ CREATE TABLE "repos" (
 );
 
 CREATE TABLE "bookmarks" (
-    "bid" PRIMARY KEY,
+    "bid" text PRIMARY KEY,
     "user_id" text,
     "repo_name" text,
     "created_at" TIMESTAMPTZ NOT NULL, 
-    "updated_ate" TIMESTAMPTZ NOT NULL
+    "updated_at" TIMESTAMPTZ NOT NULL
 );
 
 ALTER TABLE "bookmarks" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id");
 ALTER TABLE "bookmarks" ADD FOREIGN KEY ("repo_name") REFERENCES "repos" ("name");
 
 -- +migrate Down
+DROP TABLE bookmarks;
 DROP TABLE users;
 DROP TABLE repos;
-DROP TABLE bookmarks;
+
+
 

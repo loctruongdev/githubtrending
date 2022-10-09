@@ -1,5 +1,5 @@
 development:
   dialect: postgres
-  dataSource: host=localhost port=5432 user=spring password=admin dbname=githubtrending sslmode=disable
+  datasource: host=localhost port=5432 user=spring password=admin dbname=githubtrending sslmode=disable
   dir: migrations
   table: migrations
